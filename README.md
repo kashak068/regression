@@ -13,7 +13,8 @@ in which they operate.
 
 ---
 live demo https://regression-ysbb.vercel.app/#features
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/78c3f932-79b1-4eef-8ffd-4954e5d3d4a1" />
+<img width="1794" height="4589" alt="image" src="https://github.com/user-attachments/assets/290ab4f0-2368-4f67-877a-1767fa8a113e" />
+
 
 
 ## Dataset
