@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
