@@ -39,8 +39,16 @@ pip install pandas numpy scikit-learn matplotlib requests tabulate
 startup_regression/
 ├── part1_crisp_dm.py          ← CRISP-DM (6-phase) regression solution
 ├── part2_feature_selection.py ← Forward feature selection + comparison
+├── regression-web/            ← Interactive Next.js web dashboard for Vercel
 └── README.md                  ← This file
 ```
+
+### Web Dashboard (Vercel)
+The `regression-web/` folder contains a Next.js web application featuring:
+- Interactive profit predictor with live calculation
+- Visual charts for Greedy Forward Feature Selection (R² and RMSE)
+- Actual vs. Predicted scatter plot
+- Summary of CRISP-DM phases and evaluation metrics
 
 `actual_vs_predicted.png` is saved to the **same directory** from which
 Part 1 is run.
