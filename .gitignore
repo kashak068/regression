@@ -1,0 +1,16 @@
+# Python byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Generated output files (re-created on each run)
+*.png
+*.pkl
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
