@@ -153,39 +153,61 @@ export default function AlgorithmComparison() {
                         <tr>
                             <th>Algorithm</th>
                             <th>Paradigm</th>
+                            <th>Execution Time</th>
                             <th>R&amp;D Spend</th>
                             <th>Marketing Spend</th>
                             <th>State_NY</th>
                             <th>State_FL</th>
                             <th>Admin</th>
-                            <th>Optimal Subset</th>
+                            <th>Selected Subset</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {ALGO_COMPARISON.map(a => (
-                            <tr key={a.name}>
-                                <td style={{ fontWeight: "700" }}>
-                                    <span style={{ color: a.color }}>●</span> {a.name}
-                                </td>
-                                <td>
-                                    <span className="pill">{a.category}</span>
-                                </td>
-                                <td style={{ color: "#10b981", fontWeight: "700" }}>✓ Retained</td>
-                                <td style={{ color: "#10b981", fontWeight: "700" }}>✓ Retained</td>
-                                <td style={{ color: "#64748b" }}>— Dropped</td>
-                                <td style={{ color: "#64748b" }}>— Dropped</td>
-                                <td style={{ color: "#64748b" }}>— Dropped</td>
-                                <td>
-                                    <span className="badge-best">2 Features</span>
-                                </td>
-                            </tr>
-                        ))}
+                        {ALGO_COMPARISON.map(a => {
+                            const has = (feat: string) => a.features.includes(feat);
+                            return (
+                                <tr key={a.name}>
+                                    <td style={{ fontWeight: "700" }}>
+                                        <span style={{ color: a.color }}>●</span> {a.name}
+                                    </td>
+                                    <td>
+                                        <span className="pill">{a.category}</span>
+                                    </td>
+                                    <td style={{ fontFamily: "monospace", fontSize: "0.85rem" }}>
+                                        {a.complexity.split("·")[1]?.trim() || a.complexity}
+                                    </td>
+                                    <td style={{ color: has("R&D Spend") ? "#10b981" : "#64748b", fontWeight: has("R&D Spend") ? "700" : "normal" }}>
+                                        {has("R&D Spend") ? "✓ Retained" : "— Dropped"}
+                                    </td>
+                                    <td style={{ color: has("Marketing Spend") ? "#10b981" : "#64748b", fontWeight: has("Marketing Spend") ? "700" : "normal" }}>
+                                        {has("Marketing Spend") ? "✓ Retained" : "— Dropped"}
+                                    </td>
+                                    <td style={{ color: has("State_New York") ? "#10b981" : "#64748b", fontWeight: has("State_New York") ? "700" : "normal" }}>
+                                        {has("State_New York") ? "✓ Retained" : "— Dropped"}
+                                    </td>
+                                    <td style={{ color: has("State_Florida") ? "#10b981" : "#64748b", fontWeight: has("State_Florida") ? "700" : "normal" }}>
+                                        {has("State_Florida") ? "✓ Retained" : "— Dropped"}
+                                    </td>
+                                    <td style={{ color: has("Administration") ? "#10b981" : "#64748b", fontWeight: has("Administration") ? "700" : "normal" }}>
+                                        {has("Administration") ? "✓ Retained" : "— Dropped"}
+                                    </td>
+                                    <td>
+                                        <span className={a.features.length === 2 ? "badge-best" : "pill"}>
+                                            {a.features.length} Features
+                                        </span>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>
 
             <div style={{ marginTop: "16px", padding: "12px 16px", borderRadius: "8px", background: "rgba(59, 130, 246, 0.08)", borderLeft: "4px solid #3b82f6" }}>
-                <strong style={{ color: "#60a5fa" }}>💡 Empirical Insight:</strong> Across all 5 distinct paradigms (Regularization, Greedy Forward, Backward Elimination, and Combinatorial Search), <strong>every single algorithm independently converges to the exact same optimal 2-feature subset: [R&amp;D Spend, Marketing Spend]</strong>. This confirms that Administration and State dummies carry minimal predictive signal and introduce variance without improving generalization.
+                <strong style={{ color: "#60a5fa" }}>💡 Empirical Insight:</strong> 
+                <strong> R&amp;D Spend</strong> is universally selected as the #1 predictor by all 5 algorithms. 
+                Both <strong>Forward SFS</strong> and <strong>Exhaustive Search</strong> identify <code>[R&amp;D Spend, Marketing Spend]</code> as the global optimal subset (RMSE: <strong>$8,198.80</strong>, R²: <strong>0.9474</strong>). 
+                <strong>Lasso</strong> favors extreme sparsity (1 feature), while <strong>ElasticNet</strong> and <strong>RFE</strong> retain additional correlated predictors (Administration / State), trading slight variance for group retention.
             </div>
         </div>
     );
