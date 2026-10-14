@@ -16,7 +16,7 @@ export default function LineChartR2({ data }: Props) {
                 <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
                     <XAxis dataKey="features" label={{ value: "# Features", position: "insideBottom", offset: -5 }} />
-                    <YAxis domain={[0, 1]} label={{ value: "R²", angle: -90, position: "insideLeft" }} />
+                    <YAxis domain={[0.92, 0.95]} label={{ value: "R²", angle: -90, position: "insideLeft" }} />
                     <Tooltip />
                     <Line type="monotone" dataKey="R2" stroke="var(--accent3)" strokeWidth={3} dot={{ r: 5 }} />
                 </LineChart>
