@@ -18,7 +18,7 @@ export default function LineChartRMSE({ data }: Props) {
                     <XAxis dataKey="features" label={{ value: "# Features", position: "insideBottom", offset: -5 }} />
                     <YAxis domain={[8000, 9200]} label={{ value: "RMSE", angle: -90, position: "insideLeft" }} />
                     <Tooltip />
-                    <Line type="monotone" dataKey="RMSE" stroke="var(--accent)" strokeWidth={3} dot={{ r: 5 }} />
+                    <Line type="linear" dataKey="RMSE" stroke="var(--accent)" strokeWidth={3} dot={{ r: 5 }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>

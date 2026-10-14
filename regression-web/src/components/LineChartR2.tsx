@@ -18,7 +18,7 @@ export default function LineChartR2({ data }: Props) {
                     <XAxis dataKey="features" label={{ value: "# Features", position: "insideBottom", offset: -5 }} />
                     <YAxis domain={[0.92, 0.95]} label={{ value: "R²", angle: -90, position: "insideLeft" }} />
                     <Tooltip />
-                    <Line type="monotone" dataKey="R2" stroke="var(--accent3)" strokeWidth={3} dot={{ r: 5 }} />
+                    <Line type="linear" dataKey="R2" stroke="var(--accent3)" strokeWidth={3} dot={{ r: 5 }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>
