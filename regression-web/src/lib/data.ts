@@ -72,3 +72,92 @@ export const ACTUAL_VS_PRED = [
     { actual: 110352.25, predicted: 113969.44 },
     { actual: 166187.94, predicted: 167921.07 },
 ];
+
+// ── 5 Feature Selection Algorithms Comparison ───────────────────────────────
+export interface AlgoItem {
+    name: string;
+    shortName: string;
+    category: "Embedded" | "Wrapper";
+    type: string;
+    complexity: string;
+    features: string[];
+    rmse: number;
+    r2: number;
+    color: string;
+    mechanism: string;
+    pros: string;
+    cons: string;
+}
+
+export const ALGO_COMPARISON: AlgoItem[] = [
+    {
+        name: "Lasso Regression (L1)",
+        shortName: "Lasso",
+        category: "Embedded",
+        type: "Regularization (L1 norm)",
+        complexity: "O(p × n) · Very Fast",
+        features: ["R&D Spend", "Marketing Spend"],
+        rmse: 8198.80,
+        r2: 0.9474,
+        color: "#3b82f6",
+        mechanism: "L1 penalty shrinks redundant or weak coefficients directly to zero.",
+        pros: "Fast, built-in feature selection, prevents overfitting without iterative refitting.",
+        cons: "When features are highly collinear, arbitrarily retains one and drops others."
+    },
+    {
+        name: "Forward SFS (Stepwise)",
+        shortName: "Forward SFS",
+        category: "Wrapper",
+        type: "Greedy Stepwise Additive",
+        complexity: "O(k × p × n) · Fast",
+        features: ["R&D Spend", "Marketing Spend"],
+        rmse: 8198.80,
+        r2: 0.9474,
+        color: "#10b981",
+        mechanism: "Starts empty, incrementally adds the single feature yielding maximum metric improvement.",
+        pros: "Intuitive, stops early once metric plateaus, highly interpretable trajectory.",
+        cons: "Greedy heuristic cannot discard features selected in earlier iterations ('nesting')."
+    },
+    {
+        name: "RFE (Recursive Elimination)",
+        shortName: "RFE",
+        category: "Wrapper",
+        type: "Greedy Stepwise Backward",
+        complexity: "O(p² × n) · Moderate",
+        features: ["R&D Spend", "Marketing Spend"],
+        rmse: 8198.80,
+        r2: 0.9474,
+        color: "#8b5cf6",
+        mechanism: "Starts with full feature set, recursively fits model and prunes smallest coefficient weights.",
+        pros: "Takes all interactions into account from the beginning before pruning.",
+        cons: "More computationally intensive than Forward SFS; requires model to expose weights."
+    },
+    {
+        name: "ElasticNet (L1 + L2)",
+        shortName: "ElasticNet",
+        category: "Embedded",
+        type: "Hybrid Regularization",
+        complexity: "O(p × n) · Very Fast",
+        features: ["R&D Spend", "Marketing Spend"],
+        rmse: 8198.80,
+        r2: 0.9474,
+        color: "#f59e0b",
+        mechanism: "Combines L1 sparsity with L2 Ridge grouping effect to handle collinear predictors.",
+        pros: "Retains correlated predictor groups together; avoids unstable Lasso drops.",
+        cons: "Requires tuning two hyperparameters (alpha and l1_ratio)."
+    },
+    {
+        name: "Exhaustive Search (Best Subset)",
+        shortName: "Exhaustive",
+        category: "Wrapper",
+        type: "Exact Global Optimization",
+        complexity: "O(2ᵖ × n) · Exponential",
+        features: ["R&D Spend", "Marketing Spend"],
+        rmse: 8198.80,
+        r2: 0.9474,
+        color: "#ef4444",
+        mechanism: "Tests all 2ᵖ - 1 (31) combinations across 1~5 features with Cross-Validation.",
+        pros: "Mathematically guaranteed to find the true global optimal feature combination.",
+        cons: "Computationally infeasible for large feature spaces (exponential explosion for p > 25)."
+    }
+];

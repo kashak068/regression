@@ -7,6 +7,7 @@ import PredictorForm from "@/components/PredictorForm";
 import LineChartRMSE from "@/components/LineChartRMSE";
 import LineChartR2 from "@/components/LineChartR2";
 import ScatterPlot from "@/components/ScatterPlot";
+import AlgorithmComparison from "@/components/AlgorithmComparison";
 
 export default function Home() {
   return (
@@ -15,10 +16,11 @@ export default function Home() {
       <section className="hero">
         <div className="hero-badge">Machine Learning Demo</div>
         <h1>50 Startups – Regression Dashboard</h1>
-        <p>Explore a Multiple Linear Regression model built with the CRISP‑DM methodology, see feature‑selection insights, and predict profit for any startup.</p>
+        <p>Explore a Multiple Linear Regression model built with the CRISP‑DM methodology, compare 5 Feature Selection algorithms, and predict profit for any startup.</p>
         <div className="hero-links">
           <a href="#predictor" className="btn-primary">Live Profit Predictor</a>
-          <a href="#features" className="btn-outline">Feature Selection</a>
+          <a href="#comparison" className="btn-outline">5 Algorithms Compared</a>
+          <a href="#features" className="btn-outline">Forward Selection</a>
         </div>
       </section>
 
@@ -61,6 +63,12 @@ export default function Home() {
         <div style={{ marginTop: "40px" }}>
           <ScatterPlot data={ACTUAL_VS_PRED} />
         </div>
+      </section>
+
+      {/* 5 ALGORITHMS BENCHMARK */}
+      <section className="section" id="comparison">
+        <h2 className="section-title"><span className="icon">⚔️</span>5 Feature Selection Algorithms Compared</h2>
+        <AlgorithmComparison />
       </section>
     </main>
   );
